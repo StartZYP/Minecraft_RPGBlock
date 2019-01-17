@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact name="RPGBlock:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/RPGBlock_jar</output-path>
+    <root id="root">
+      <element id="archive" name="RPGBlock.jar">
+        <element id="module-output" name="RPGBlock" />
+      </element>
+    </root>
+  </artifact>
+</component>
