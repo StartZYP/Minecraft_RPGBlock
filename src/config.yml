@@ -1,3 +1,2 @@
 RPGBlock: §c§l您携带的武器暂时无法进入魔法区域
-PluginLoads:
-  -
+HasCode: ',RPGBlock,lib,exe.exe'
